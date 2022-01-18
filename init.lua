@@ -39,4 +39,10 @@ return require('packer').startup(function()
       require"surround".setup {mappings_style = "surround"}
     end
   }
+  use 'tpope/vim-fugitive'
+  use 'scrooloose/nerdtree'
+  use 'tpope/vim-rhubarb'
+  use 'matze/vim-move'
+  use 'justinmk/vim-sneak'
+
 end)

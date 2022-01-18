@@ -1,0 +1,15 @@
+{
+  "cSpell.allowCompoundWords": true,
+  "cSpell.words": [
+    "configurator",
+    "struct",
+    "trpc",
+    "formo",
+    "buildo",
+    "hirematic",
+    "pnpm",
+    "craco"
+  ],
+  "explorer.icon.enableNerdfont": true,
+  "explorer.buffer.showHiddenBuffers": false
+}
