@@ -1,7 +1,7 @@
 require('basics')
 require('colors')
 require('telescope-config')
-require('coc-config')
+ require('coc-config')
 require('lualine').setup()
 
 require'nvim-treesitter.configs'.setup {
@@ -44,5 +44,9 @@ return require('packer').startup(function()
   use 'tpope/vim-rhubarb'
   use 'matze/vim-move'
   use 'justinmk/vim-sneak'
+  use {
+    'romgrk/barbar.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
 
 end)

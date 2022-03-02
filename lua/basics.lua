@@ -21,6 +21,9 @@ vim.o.showmode = false
 vim.o.showtabline = 2
 vim.o.signcolumn = 'yes'
 vim.o.mouse = 'a'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldmethod = 'indent'
 
 vim.api.nvim_set_keymap('v', 'y', 'ygv<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-W><C-L>', { noremap = true })
@@ -28,9 +31,14 @@ vim.api.nvim_set_keymap('n', '<leader>h', '<C-W><C-H>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>k', '<C-W><C-K>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>j', '<C-W><C-J>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-L>', ':tabnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-H>', ':tabprev<CR>', { noremap = true, silent = true  })
-vim.api.nvim_set_keymap('n', '<C-W>', ':bd<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('n', '<C-L>', ':BufferNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-H>', ':BufferPrevious<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('n', '<C-W>', ':BufferClose<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('i', '<C-L>', '<Esc>:BufferNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-H>', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('i', '<C-W>', '<Esc>:BufferClose<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('n', '<leader>b', ':BufferMovePrevious<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap('n', '<leader>n', ':BufferMoveNext<CR>', { noremap = true, silent = true  })
 vim.api.nvim_set_keymap('n', 'to', ':tabo<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-S>', ':%s/', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>2', 'vi"', { noremap = true })

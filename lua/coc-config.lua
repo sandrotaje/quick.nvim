@@ -2,6 +2,7 @@ vim.api.nvim_set_keymap("n", "<leader>a", "<Plug>(coc-codeaction)", {})
 vim.api.nvim_set_keymap("n", "<leader>e", ":CocCommand eslint.executeAutofix<CR>", {})
 vim.api.nvim_set_keymap("n", "<leader>o", ":CocCommand editor.action.organizeImport<CR>", {})
 vim.api.nvim_set_keymap("n", "gd", "<Plug>(coc-definition)", {silent = true})
+vim.api.nvim_set_keymap("n", "gD", ":call CocAction('jumpDefinition', 'tabe')<CR>", {silent = true})
 vim.api.nvim_set_keymap("n", "gr", "<Plug>(coc-references)", {silent = true})
 vim.api.nvim_set_keymap("n", "<C-j>", "<Plug>(coc-diagnostic-next)", {silent = true})
 vim.api.nvim_set_keymap("n", "<C-k>", "<Plug>(coc-diagnostic-prev)", {silent = true})
@@ -19,3 +20,5 @@ vim.o.hidden = true
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.updatetime = 300
+vim.o.cmdheight = 2
+vim.cmd[[autocmd CursorHold * silent call CocActionAsync('highlight')]]
