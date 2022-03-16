@@ -11,5 +11,6 @@
     "craco"
   ],
   "explorer.icon.enableNerdfont": true,
-  "explorer.buffer.showHiddenBuffers": false
+  "explorer.buffer.showHiddenBuffers": false,
+  "typescript.preferences.importModuleSpecifier": "relative"
 }
