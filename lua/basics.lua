@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 vim.o.number  =true
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 vim.o.wrap = false
 vim.o.expandtab = true
 vim.o.incsearch = true
@@ -25,6 +25,8 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldmethod = 'indent'
 
+vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('i', 'kk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('v', 'y', 'ygv<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-W><C-L>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>h', '<C-W><C-H>', { noremap = true })

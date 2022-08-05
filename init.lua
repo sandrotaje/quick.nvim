@@ -13,7 +13,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   indent = {
-    enable = true
+    enable = false
   }
 }
 
@@ -48,5 +48,6 @@ return require('packer').startup(function()
     'romgrk/barbar.nvim',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
+  use 'towolf/vim-helm'
 
 end)

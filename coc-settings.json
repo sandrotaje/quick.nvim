@@ -8,9 +8,37 @@
     "buildo",
     "hirematic",
     "pnpm",
-    "craco"
+    "craco",
+    "kubernetes",
+    "devspace",
+    "loftsh",
+    "vcluster",
+    "alinity",
+    "fluxcd",
+    "aipclouddev",
+    "syncer",
+    "postgres",
+    "blazor",
+    "paketo",
+    "paketobuildpacks"
   ],
   "explorer.icon.enableNerdfont": true,
-  "explorer.buffer.showHiddenBuffers": false,
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "explorer.file.showHiddenFiles": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "explorer.root.strategies": ["keep"],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "csharp-ls": {
+      "command": "csharp-ls",
+      "filetypes": ["cs"],
+      "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
+    }
+  },
+  "yaml.schemas": {}
 }
