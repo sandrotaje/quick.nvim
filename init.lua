@@ -1,14 +1,10 @@
 require('basics')
 require('colors')
 require('telescope-config')
- require('coc-config')
+require('coc-config')
 require('lualine').setup()
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  context_commentstring = {
-    enable = true
-  },
   highlight = {
     enable = true
   },
@@ -19,15 +15,19 @@ require'nvim-treesitter.configs'.setup {
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
+  use 'nvim-tree/nvim-web-devicons'
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'folke/tokyonight.nvim'
-  use 'nvim-treesitter/nvim-treesitter' 
+  use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
   use 'tpope/vim-commentary'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'ThePrimeagen/git-worktree.nvim'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = {'nvim-tree/nvim-web-devicons', opt = true}
   }
   use {
     'nvim-telescope/telescope.nvim',
@@ -46,7 +46,7 @@ return require('packer').startup(function()
   use 'justinmk/vim-sneak'
   use {
     'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
+    requires = {'nvim-tree/nvim-web-devicons'}
   }
   use 'towolf/vim-helm'
 

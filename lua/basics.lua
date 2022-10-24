@@ -24,10 +24,17 @@ vim.o.mouse = 'a'
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldmethod = 'indent'
+vim.o.clipboard = 'unnamed'
+vim.o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·'
+vim.o.list = true
+vim.g.vim_json_conceal = 0
+vim.g.markdown_syntax_conceal = 0
 
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'kk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('v', 'y', 'ygv<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-W><C-L>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>h', '<C-W><C-H>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>k', '<C-W><C-K>', { noremap = true })
@@ -46,9 +53,8 @@ vim.api.nvim_set_keymap('n', '<C-S>', ':%s/', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>2', 'vi"', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>w', 'viw', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':mks!<CR>:qa<CR>', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<C-N>', ":NERDTreeToggle<CR> :vertical resize 30<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>t", ":sp<CR> :term<CR> :resize 20N<CR> i", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>g", ":G<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {noremap = true, silent = true})
 
 
