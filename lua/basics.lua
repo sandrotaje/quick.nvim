@@ -6,7 +6,7 @@ vim.o.expandtab = true
 vim.o.incsearch = true
 vim.o.tabstop = 2
 vim.o.cursorline = true
-vim.o.ignorecase = true
+vim.o.ignorecase = false
 vim.o.hlsearch = false
 vim.o.swapfile = false
 vim.o.splitbelow = true
@@ -43,6 +43,8 @@ vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-L>', ':BufferNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-H>', ':BufferPrevious<CR>', { noremap = true, silent = true  })
 vim.api.nvim_set_keymap('n', '<C-W>', ':BufferClose<CR>', { noremap = true, silent = true  })
+vim.api.nvim_set_keymap("n", "<Esc>", "<Esc>:w<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-N>", ":Neotree toggle reveal float<CR>", { noremap = true, silent = true  })
 vim.api.nvim_set_keymap('i', '<C-L>', '<Esc>:BufferNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-H>', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true  })
 vim.api.nvim_set_keymap('i', '<C-W>', '<Esc>:BufferClose<CR>', { noremap = true, silent = true  })
@@ -55,6 +57,7 @@ vim.api.nvim_set_keymap('n', '<leader>w', 'viw', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':mks!<CR>:qa<CR>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>t", ":sp<CR> :term<CR> :resize 20N<CR> i", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>g", ":G<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "w", "/([a-z]\u\|[^a-z]\u\|\s\u\|\s[a-z]\|[^a-z][a-z])<CR>l", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {noremap = true, silent = true})
 
 

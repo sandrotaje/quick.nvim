@@ -1,7 +1,7 @@
 require('basics')
 require('colors')
 require('telescope-config')
-require('coc-config')
+require('lsp-config')
 require('lualine').setup()
 
 require'nvim-treesitter.configs'.setup {
@@ -9,14 +9,25 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   indent = {
-    enable = false
+    enable = true
   }
 }
+
+require("neo-tree").setup {
+  window = {
+    mappings = {
+      ["l"] = { "open" },
+      ["h"] = { "close_node" },
+    }
+  }
+}
+
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'nvim-tree/nvim-web-devicons'
-  use {'neoclide/coc.nvim', branch = 'release'}
   use 'folke/tokyonight.nvim'
   use {
         'nvim-treesitter/nvim-treesitter',
@@ -40,7 +51,6 @@ return require('packer').startup(function()
     end
   }
   use 'tpope/vim-fugitive'
-  use 'scrooloose/nerdtree'
   use 'tpope/vim-rhubarb'
   use 'matze/vim-move'
   use 'justinmk/vim-sneak'
@@ -49,5 +59,25 @@ return require('packer').startup(function()
     requires = {'nvim-tree/nvim-web-devicons'}
   }
   use 'towolf/vim-helm'
+  use 'chaoren/vim-wordmotion'
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+
 
 end)
+
