@@ -34,7 +34,15 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
   use 'tpope/vim-commentary'
+  use {
+    "ur4ltz/surround.nvim",
+    config = function()
+      require "surround".setup { mappings_style = "sandwich" }
+    end
+  }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'ThePrimeagen/git-worktree.nvim'
   use {
@@ -45,14 +53,6 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use {
-    "blackCauldron7/surround.nvim",
-    config = function()
-      require "surround".setup { mappings_style = "surround" }
-    end
-  }
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
   use 'matze/vim-move'
   use 'justinmk/vim-sneak'
   use {
@@ -78,6 +78,6 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
+  use 'natecraddock/workspaces.nvim'
 
 end)
