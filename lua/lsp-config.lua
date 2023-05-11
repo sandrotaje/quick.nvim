@@ -53,9 +53,7 @@ require("mason-lspconfig").setup()
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-local lspconfig = require('lspconfig')
-local configs = require 'lspconfig.configs'
+local configs = require('lspconfig.configs')
 local util = require('lspconfig.util')
 
 if not configs.helm_ls then
@@ -70,27 +68,48 @@ if not configs.helm_ls then
   }
 end
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'yamlls', 'rust_analyzer', 'gopls', 'tsserver', 'helm_ls' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-  }
-end
-
-lspconfig.sumneko_lua.setup {
+require("lspconfig")["helm_ls"].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim', 'use' }
-      }
+}
+
+require("mason-lspconfig").setup_handlers {
+  function(server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {
+      on_attach = on_attach,
+      flags = lsp_flags,
+      capabilities = capabilities,
     }
-  }
+  end,
+  ["yamlls"] = function()
+    require("lspconfig")["yamlls"].setup {
+      on_attach = on_attach,
+      flags = lsp_flags,
+      capabilities = capabilities,
+      settings = {
+        yaml = {
+          keyOrdering = false
+        }
+      }
+
+    }
+  end,
+  ["lua_ls"] = function()
+    require("lspconfig")["lua_ls"].setup {
+      on_attach = on_attach,
+      flags = lsp_flags,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim', 'use' }
+          }
+        }
+      }
+
+    }
+  end,
 }
 
 -- luasnip setup

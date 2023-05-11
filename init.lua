@@ -6,7 +6,8 @@ require('lualine').setup()
 
 require 'nvim-treesitter.configs'.setup {
   highlight = {
-    enable = true
+    enable = true,
+    disable = { "yaml", "helm" },
   },
   indent = {
     enable = true
@@ -32,7 +33,7 @@ return require('packer').startup(function()
   use 'folke/tokyonight.nvim'
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    run = ':TSUpdate'
   }
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -59,7 +60,6 @@ return require('packer').startup(function()
     'romgrk/barbar.nvim',
     requires = { 'nvim-tree/nvim-web-devicons' }
   }
-  use 'towolf/vim-helm'
   use 'chaoren/vim-wordmotion'
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
@@ -74,10 +74,12 @@ return require('packer').startup(function()
       "MunifTanjim/nui.nvim",
     }
   }
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'hrsh7th/nvim-cmp'         -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp'     -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'L3MON4D3/LuaSnip'         -- Snippets plugin
   use 'natecraddock/workspaces.nvim'
-
+  use 'towolf/vim-helm'
+  use 'github/copilot.vim'
+  use "lukas-reineke/indent-blankline.nvim"
 end)
