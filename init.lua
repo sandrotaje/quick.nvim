@@ -24,8 +24,12 @@ require("neo-tree").setup {
   }
 }
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.lsp.buf.format()
+  end
+})
 
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
@@ -54,7 +58,7 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use 'matze/vim-move'
+  -- use 'matze/vim-move'
   use 'justinmk/vim-sneak'
   use {
     'romgrk/barbar.nvim',
@@ -82,4 +86,20 @@ return require('packer').startup(function()
   use 'towolf/vim-helm'
   use 'github/copilot.vim'
   use "lukas-reineke/indent-blankline.nvim"
+  use { 'alexghergh/nvim-tmux-navigation', config = function()
+    require 'nvim-tmux-navigation'.setup {
+      disable_when_zoomed = true, -- defaults to false
+      keybindings = {
+        left = "<C-h>",
+        down = "<C-j>",
+        up = "<C-k>",
+        right = "<C-l>",
+        last_active = "<C-\\>",
+        next = "<C-Space>",
+      }
+    }
+  end
+  }
+  use 'mg979/vim-visual-multi'
+  use { "akinsho/toggleterm.nvim", tag = '*' }
 end)

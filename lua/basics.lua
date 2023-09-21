@@ -31,29 +31,30 @@ vim.g.vim_json_conceal        = 0
 vim.g.markdown_syntax_conceal = 0
 vim.g.copilot_filetypes       = { yaml = true, yml = true, xml = true, md = true }
 vim.g.copilot_no_tab_map      = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.g.VM_maps = { ['Find Under'] = '<C-m>',['Find Subword Under'] = '<C-m>' }
+vim.g.VM_mouse_mappings = 1
 
-
-
+vim.api.nvim_set_keymap('v', '<leader>c', 'y/<C-r>"<CR>Ncgn', { noremap = true })
 
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'kk', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('v', 'y', 'ygv<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>l', '<C-W><C-L>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>h', '<C-W><C-H>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>k', '<C-W><C-K>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>j', '<C-W><C-J>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>l', '<C-W><C-L>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>h', '<C-W><C-H>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>k', '<C-W><C-K>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>j', '<C-W><C-J>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-L>', ':BufferNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-H>', ':BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-W>', ':BufferClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '¬', ':BufferNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '∆', ':BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'Ω', ':BufferClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Esc>", "<Esc>:w<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-N>", ":Neotree toggle reveal float<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-L>', '<Esc>:BufferNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-H>', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-W>', '<Esc>:BufferClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", '<C-n>', ":Neotree toggle reveal float<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '¬', '<Esc>:BufferNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '∆', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'Ω', '<Esc>:BufferClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>n', ':BufferMoveNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'to', ':tabo<CR>', { noremap = true })
@@ -61,8 +62,6 @@ vim.api.nvim_set_keymap('n', '<C-S>', ':%s/', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>2', 'vi"', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>w', 'viw', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':mks!<CR>:qa<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>t", ":sp<CR> :term<CR> :resize 20N<CR> i", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>g", ":G<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "w", "/([a-z]\u\|[^a-z]\u\|\s\u\|\s[a-z]\|[^a-z][a-z])<CR>l", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 
@@ -74,3 +73,42 @@ vim.api.nvim_set_keymap('n', '§', '/export function<CR>15ll', { noremap = true 
 vim.g["netrw_banner"] = 0
 vim.g["netrw_liststyle"] = 3
 vim.g["netrw_winsize"] = 25
+
+
+-- toggleterm
+require('toggleterm').setup {
+  -- size can be a number or function which is passed the current terminal
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  open_mapping = [[<leader>t]],
+  shade_filetypes = {},
+  shade_terminals = true,
+  shading_factor = '1', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+  start_in_insert = true,
+  persist_size = true,
+  direction = 'float',
+  close_on_exit = true, -- close the terminal window when the process exits
+  shell = vim.o.shell,  -- change the default shell
+  float_opts = {
+    border = 'single',
+    winblend = 3,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    }
+  }
+}
+
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit  = Terminal:new({ cmd = "lazygit", hidden = true })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
