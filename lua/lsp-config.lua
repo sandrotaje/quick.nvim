@@ -119,6 +119,12 @@ require("mason-lspconfig").setup_handlers {
         checkOnSave = {
           command = "cargo clippy",
         },
+        inlayHints = {
+          enable = true,
+          chainingHints = true,
+          typeHints = true,
+          parameterHints = true
+        }
       }
 
     }

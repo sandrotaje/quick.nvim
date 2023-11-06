@@ -86,20 +86,7 @@ return require('packer').startup(function()
   use 'towolf/vim-helm'
   use 'github/copilot.vim'
   use "lukas-reineke/indent-blankline.nvim"
-  use { 'alexghergh/nvim-tmux-navigation', config = function()
-    require 'nvim-tmux-navigation'.setup {
-      disable_when_zoomed = true, -- defaults to false
-      keybindings = {
-        left = "<C-h>",
-        down = "<C-j>",
-        up = "<C-k>",
-        right = "<C-l>",
-        last_active = "<C-\\>",
-        next = "<C-Space>",
-      }
-    }
-  end
-  }
+  use 'christoomey/vim-tmux-navigator'
   use 'mg979/vim-visual-multi'
   use { "akinsho/toggleterm.nvim", tag = '*' }
 end)
