@@ -32,7 +32,7 @@ vim.g.markdown_syntax_conceal = 0
 vim.g.copilot_filetypes       = { yaml = true, yml = true, xml = true, md = true }
 vim.g.copilot_no_tab_map      = true
 vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-vim.g.VM_maps = { ['Find Under'] = '<C-m>',['Find Subword Under'] = '<C-m>' }
+vim.g.VM_maps = { ['Find Under'] = '<C-m>', ['Find Subword Under'] = '<C-m>' }
 vim.g.VM_mouse_mappings = 1
 
 vim.api.nvim_set_keymap('v', '<leader>c', 'y/<C-r>"<CR>Ncgn', { noremap = true })
@@ -48,13 +48,13 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>j', '<C-W><C-J>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'tn', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '¬', ':BufferNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '∆', ':BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'Ω', ':BufferClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '˙', ':BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '∑', ':BufferClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Esc>", "<Esc>:w<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", '<C-n>', ":Neotree toggle reveal float<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '¬', '<Esc>:BufferNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '∆', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', 'Ω', '<Esc>:BufferClose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '˙', '<Esc>:BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '∑', '<Esc>:BufferClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':BufferMovePrevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>n', ':BufferMoveNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'to', ':tabo<CR>', { noremap = true })
@@ -112,3 +112,7 @@ function _lazygit_toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+require('gitsigns').setup {
+  current_line_blame = true,
+}
