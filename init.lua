@@ -44,6 +44,8 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+require("CopilotChat").setup()
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'nvim-tree/nvim-web-devicons'
@@ -55,14 +57,7 @@ return require('packer').startup(function()
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-commentary'
-  use {
-    "ur4ltz/surround.nvim",
-    config = function()
-      require "surround".setup { mappings_style = "sandwich" }
-    end
-  }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'ThePrimeagen/git-worktree.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
@@ -95,14 +90,25 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'     -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip'         -- Snippets plugin
-  use 'natecraddock/workspaces.nvim'
-  use 'towolf/vim-helm'
   use 'github/copilot.vim'
   use "lukas-reineke/indent-blankline.nvim"
   use 'christoomey/vim-tmux-navigator'
   use 'mg979/vim-visual-multi'
-  use { "akinsho/toggleterm.nvim", tag = '*' }
   use 'lewis6991/gitsigns.nvim'
+  use {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end

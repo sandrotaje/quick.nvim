@@ -74,6 +74,15 @@ require("lspconfig")["helm_ls"].setup {
   capabilities = capabilities,
 }
 
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 require("mason-lspconfig").setup_handlers {
   function(server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup {
@@ -127,6 +136,32 @@ require("mason-lspconfig").setup_handlers {
         }
       }
 
+    }
+  end,
+  ["tsserver"] = function()
+    require("lspconfig")["tsserver"].setup {
+      on_init = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentFormattingRangeProvider = false
+      end,
+      on_attach = on_attach,
+      capabilities = capabilities,
+      commands = {
+        OrganizeImports = {
+          organize_imports,
+          description = "Organize Imports"
+        }
+      }
+    }
+  end,
+  ["eslint"] = function()
+    require("lspconfig")["eslint"].setup {
+      on_init = function(client)
+        client.server_capabilities.documentFormattingProvider = true
+        client.server_capabilities.documentFormattingRangeProvider = true
+      end,
+      on_attach = on_attach,
+      capabilities = capabilities,
     }
   end,
 }
